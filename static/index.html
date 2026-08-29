@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RevMatrix AI — Autonomous AI Revenue Recovery Engine</title>
+  <meta name="description" content="AI Revenue Recovery Engine for Razorpay Buildathon Track 03. Autonomous payment degradation diagnosis, checkout dropoff rescue, dunning, B2B receivables, mandate sequencing, and Hinglish voice recovery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <i data-lucide="zap" class="brand-icon"></i>
+        </div>
+        <div class="brand-text">
+          <h2>RevMatrix <span>AI</span></h2>
+          <p class="track-badge">Razorpay Track 03</p>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="tab-overview" id="nav-overview">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Executive Overview</span>
+        </button>
+        <button class="nav-item" data-tab="tab-batch" id="nav-batch">
+          <i data-lucide="layers"></i>
+          <span>Batch Test Bench</span>
+          <span class="nav-badge" id="badge-at-risk">50</span>
+        </button>
+        <button class="nav-item" data-tab="tab-voice" id="nav-voice">
+          <i data-lucide="mic"></i>
+          <span>Hinglish Voice & Chat</span>
+        </button>
+        <button class="nav-item" data-tab="tab-audit" id="nav-audit">
+          <i data-lucide="shield-check"></i>
+          <span>Audit Trail & Rules</span>
+        </button>
+        <button class="nav-item" data-tab="tab-webhook" id="nav-webhook">
+          <i data-lucide="webhook"></i>
+          <span>Webhook Injector</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="compliance-status">
+          <div class="indicator pulse"></div>
+          <div>
+            <div class="status-title">Guardrails Active</div>
+            <div class="status-subtitle">RBI Quiet Hours & Stopping Rules</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Header Bar -->
+      <header class="topbar">
+        <div class="page-title-group">
+          <h1 id="page-heading">Executive Command Center</h1>
+          <p class="page-subheading" id="page-sub">Autonomous closed-loop revenue recovery across Indian payment rails</p>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="btn btn-secondary" id="btn-reset-batch">
+            <i data-lucide="rotate-ccw"></i>
+            <span>Reset Dataset</span>
+          </button>
+          <button class="btn btn-primary" id="btn-run-batch-top">
+            <i data-lucide="play"></i>
+            <span>Run Autonomous Recovery</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: EXECUTIVE OVERVIEW -->
+      <section id="tab-overview" class="tab-pane active">
+        
+        <!-- Key Metrics Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card gradient-cyan">
+            <div class="metric-header">
+              <span>Total Recovered Revenue</span>
+              <i data-lucide="trending-up"></i>
+            </div>
+            <div class="metric-value" id="val-recovered-inr">₹0.00</div>
+            <div class="metric-footer text-success">
+              <span id="val-recovery-rate">0.0%</span> of at-risk revenue won back
+            </div>
+          </div>
+
+          <div class="metric-card gradient-purple">
+            <div class="metric-header">
+              <span>Total Revenue At Risk</span>
+              <i data-lucide="alert-octagon"></i>
+            </div>
+            <div class="metric-value" id="val-atrisk-inr">₹0.00</div>
+            <div class="metric-footer text-muted">
+              <span id="val-total-cases">50</span> failed & dropped transactions
+            </div>
+          </div>
+
+          <div class="metric-card gradient-emerald">
+            <div class="metric-header">
+              <span>Cases Resolved & Won</span>
+              <i data-lucide="check-circle-2"></i>
+            </div>
+            <div class="metric-value" id="val-recovered-count">0</div>
+            <div class="metric-footer text-info">
+              Avg agent latency: <span id="val-avg-latency">1.4s</span>
+            </div>
+          </div>
+
+          <div class="metric-card gradient-amber">
+            <div class="metric-header">
+              <span>Stopping Rules & PTP</span>
+              <i data-lucide="shield-alert"></i>
+            </div>
+            <div class="metric-value" id="val-ptp-compliance">0</div>
+            <div class="metric-footer text-amber">
+              <span id="val-ptp-count">0</span> PTP Holds / <span id="val-halted-count">0</span> Halts
+            </div>
+          </div>
+        </div>
+
+        <!-- 7-Pillar Track Performance Cards -->
+        <div class="section-title">
+          <h3>7 Core Recovery Pillars Performance</h3>
+          <p>Real-time telemetry breakdown mapped to Razorpay Buildathon track directions</p>
+        </div>
+
+        <div class="pillars-grid" id="pillars-container">
+          <!-- Populated dynamically via app.js -->
+        </div>
+
+        <!-- Live Activity Stream & System Health -->
+        <div class="split-grid mt-4">
+          <div class="card">
+            <div class="card-header">
+              <h3><i data-lucide="activity"></i> Real-Time Agent Decision Stream</h3>
+              <span class="live-tag">LIVE FEED</span>
+            </div>
+            <div class="activity-feed" id="live-activity-stream">
+              <!-- Logs populated dynamically -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3><i data-lucide="server"></i> Indian Bank Health & Switch Status</h3>
+              <span class="badge badge-outline">NPCI Telemetry</span>
+            </div>
+            <div class="bank-grid">
+              <div class="bank-item">
+                <div class="bank-name"><strong>HDFC Bank</strong></div>
+                <div class="badge badge-success">Healthy (94%)</div>
+              </div>
+              <div class="bank-item degraded">
+                <div class="bank-name"><strong>SBI (State Bank)</strong></div>
+                <div class="badge badge-danger">Degraded (62%)</div>
+              </div>
+              <div class="bank-item">
+                <div class="bank-name"><strong>ICICI Bank</strong></div>
+                <div class="badge badge-success">Healthy (96%)</div>
+              </div>
+              <div class="bank-item">
+                <div class="bank-name"><strong>Axis Bank</strong></div>
+                <div class="badge badge-success">Healthy (92%)</div>
+              </div>
+              <div class="bank-item">
+                <div class="bank-name"><strong>Kotak Bank</strong></div>
+                <div class="badge badge-success">Healthy (95%)</div>
+              </div>
+              <div class="bank-item degraded">
+                <div class="bank-name"><strong>Paytm Bank</strong></div>
+                <div class="badge badge-warning">Congestion (58%)</div>
+              </div>
+            </div>
+            <div class="info-callout mt-3">
+              <i data-lucide="info"></i>
+              <span>Smart delay routing automatically skips degraded bank windows to prevent wasted retry attempts.</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TAB 2: BATCH TEST BENCH ("THE BAR") -->
+      <section id="tab-batch" class="tab-pane">
+        
+        <div class="card">
+          <div class="card-header flex-between">
+            <div>
+              <h3>Autonomous Batch Processing Test Bench</h3>
+              <p class="text-muted">Process 50+ benchmark cases across all 7 problem directions with granular agent reasoning</p>
+            </div>
+            <div class="filter-group">
+              <select id="filter-category" class="custom-select">
+                <option value="">All Categories (7 Pillars)</option>
+                <option value="payment_degradation">Payment Degradation</option>
+                <option value="checkout_dropoff">Checkout Drop-Off</option>
+                <option value="failed_subscription">Failed Subscriptions</option>
+                <option value="b2b_receivables">B2B Receivables</option>
+                <option value="mandate_failure">Mandate Failure</option>
+              </select>
+              <select id="filter-status" class="custom-select">
+                <option value="">All Statuses</option>
+                <option value="at_risk">At Risk</option>
+                <option value="recovered">Recovered</option>
+                <option value="ptp_committed">PTP Committed</option>
+                <option value="halted_compliance">Halted (Compliance)</option>
+                <option value="halted_dispute">Halted (Dispute)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table" id="cases-table">
+              <thead>
+                <tr>
+                  <th>Case ID</th>
+                  <th>Customer & Channel</th>
+                  <th>Category & Error</th>
+                  <th>Amount</th>
+                  <th>Diagnosis / Strategy</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="cases-table-body">
+                <!-- Populated dynamically via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TAB 3: HINGLISH VOICE & CHAT SIMULATOR -->
+      <section id="tab-voice" class="tab-pane">
+        <div class="voice-layout">
+          
+          <!-- Hinglish Voice Call Simulator -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i data-lucide="phone-call"></i> Hinglish Conversational Voice Agent (Pillar 6)</h3>
+              <span class="badge badge-primary">Interactive Audio</span>
+            </div>
+            <div class="voice-box">
+              <div class="case-selector-box">
+                <label>Select Target Case to Dial:</label>
+                <select id="voice-case-select" class="custom-select w-100 mt-1">
+                  <!-- Populated via app.js -->
+                </select>
+              </div>
+
+              <div class="audio-waveform-card mt-3">
+                <div class="avatar-speaker">
+                  <i data-lucide="bot"></i>
+                </div>
+                <div class="audio-details">
+                  <div class="audio-title">RevMatrix Voice Recovery Desk</div>
+                  <div class="audio-meta">Natural Hinglish • en-IN Female Voice</div>
+                </div>
+                <button class="btn btn-sm btn-primary" id="btn-play-audio">
+                  <i data-lucide="volume-2"></i>
+                  <span>Speak Script</span>
+                </button>
+              </div>
+
+              <div class="script-display mt-3">
+                <label class="text-muted"><small>Synthesized Dynamic Script:</small></label>
+                <div class="script-text-box" id="voice-script-text">
+                  Select a case to generate dynamic Hinglish voice dialogue...
+                </div>
+              </div>
+
+              <!-- Interactive Dialogue Simulator -->
+              <div class="dialogue-box mt-3">
+                <label><strong>Simulate Customer Voice Response:</strong></label>
+                <div class="quick-responses">
+                  <button class="quick-chip" data-text="Haan WhatsApp pe payment link bhej do">"Haan link bhej do" (Pay Now)</button>
+                  <button class="quick-chip" data-text="Abhi balance nahi hai Friday ko karunga">"Friday ko karunga" (Promise-to-Pay)</button>
+                  <button class="quick-chip" data-text="Maine subscription cancel kar diya tha">"Cancel kar diya tha" (Dispute Halt)</button>
+                </div>
+                <div class="input-with-button mt-2">
+                  <input type="text" id="voice-user-input" class="custom-input" placeholder="Or type your own Hinglish response...">
+                  <button class="btn btn-primary" id="btn-send-voice-turn">Send Response</button>
+                </div>
+              </div>
+
+              <div class="bot-reply-card mt-3" id="voice-bot-reply" style="display:none;">
+                <div class="bot-header"><i data-lucide="message-square"></i> <strong>Agent Real-time Decision:</strong></div>
+                <p id="bot-reply-text"></p>
+                <div id="voice-action-badge" class="mt-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WhatsApp & Promise-to-Pay (PTP) Simulator -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i data-lucide="calendar-clock"></i> Promise-to-Pay (PTP) State Machine (Pillar 7)</h3>
+              <span class="badge badge-success">Automated Hold</span>
+            </div>
+
+            <!-- WhatsApp Message Preview -->
+            <div class="whatsapp-phone-mockup">
+              <div class="wa-header">
+                <div class="wa-avatar"><i data-lucide="check"></i></div>
+                <div>
+                  <strong>RevMatrix Recovery Desk</strong>
+                  <div class="wa-status"><small>Verified Business</small></div>
+                </div>
+              </div>
+              <div class="wa-chat-body" id="wa-chat-preview">
+                <div class="wa-bubble received">
+                  <p id="wa-bubble-text">Select a case to preview dynamic WhatsApp message & 1-click Razorpay payment link...</p>
+                  <div class="wa-link-btn" id="wa-link-cta" style="display:none;">
+                    <i data-lucide="external-link"></i> Pay ₹<span id="wa-amount"></span> via 1-Click UPI
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PTP Manual Commitment Tester -->
+            <div class="ptp-test-card mt-3">
+              <h4>Direct PTP Commitment Parser</h4>
+              <p class="text-muted"><small>Parses natural date commitments & schedules compliant reminder queue</small></p>
+              <div class="input-with-button mt-2">
+                <input type="text" id="ptp-input-text" class="custom-input" placeholder="e.g. 'I will clear the payment on 5th after salary'">
+                <button class="btn btn-secondary" id="btn-submit-ptp">Register PTP</button>
+              </div>
+              <div id="ptp-result-box" class="ptp-result mt-2" style="display:none;"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 4: CRYPTOGRAPHIC AUDIT TRAIL -->
+      <section id="tab-audit" class="tab-pane">
+        <div class="card">
+          <div class="card-header flex-between">
+            <div>
+              <h3>Cryptographic Tamper-Evident Audit Trail</h3>
+              <p class="text-muted">Every diagnostic step, tool execution, and stopping rule is SHA-256 block-linked</p>
+            </div>
+            <div class="audit-summary-pill">
+              <i data-lucide="lock"></i>
+              <span id="audit-count-pill">0 Audit Blocks Verified</span>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table" id="audit-table">
+              <thead>
+                <tr>
+                  <th>Timestamp (UTC)</th>
+                  <th>Case ID</th>
+                  <th>Event Type</th>
+                  <th>Actor / Engine</th>
+                  <th>Audit Payload / Reasoning</th>
+                  <th>SHA-256 Hash</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <!-- Populated via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: WEBHOOK INJECTOR FOR JUDGES -->
+      <section id="tab-webhook" class="tab-pane">
+        <div class="card max-w-700">
+          <div class="card-header">
+            <h3><i data-lucide="send"></i> Live Razorpay Webhook Event Injector</h3>
+            <span class="badge badge-primary">Interactive Demo Test</span>
+          </div>
+          <p class="text-muted">Simulate any incoming failure or degradation event and watch RevMatrix AI diagnose, check compliance, and execute the recovery in under 2 seconds.</p>
+
+          <form id="webhook-inject-form" class="mt-3">
+            <div class="form-group">
+              <label>Event Type:</label>
+              <select id="wh-event" class="custom-select w-100">
+                <option value="payment.failed">payment.failed (Transient / Bank Down)</option>
+                <option value="subscription.charged_failed">subscription.charged_failed (Expired Card / Low Balance)</option>
+                <option value="order.dropoff">order.dropoff (Abandoned Checkout)</option>
+                <option value="invoice.overdue">invoice.overdue (B2B Aged Receivable)</option>
+                <option value="mandate.failed">mandate.failed (UPI Autopay Failure)</option>
+              </select>
+            </div>
+
+            <div class="form-row mt-2">
+              <div class="form-group col">
+                <label>Customer Name:</label>
+                <input type="text" id="wh-name" class="custom-input" value="Aarav Sharma" required>
+              </div>
+              <div class="form-group col">
+                <label>Phone Number:</label>
+                <input type="text" id="wh-phone" class="custom-input" value="+919876500001" required>
+              </div>
+            </div>
+
+            <div class="form-row mt-2">
+              <div class="form-group col">
+                <label>Amount (₹):</label>
+                <input type="number" id="wh-amount" class="custom-input" value="4999" required>
+              </div>
+              <div class="form-group col">
+                <label>Issuer Bank:</label>
+                <select id="wh-bank" class="custom-select">
+                  <option value="HDFC">HDFC Bank</option>
+                  <option value="SBI">SBI (Simulate Downtime)</option>
+                  <option value="ICICI">ICICI Bank</option>
+                  <option value="AXIS">Axis Bank</option>
+                  <option value="PAYTM_BANK">Paytm Bank (Congestion)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label>Error Code Simulation:</label>
+              <select id="wh-error" class="custom-select w-100">
+                <option value="PAYMENT_INSUFFICIENT_FUNDS">PAYMENT_INSUFFICIENT_FUNDS (Soft Decline)</option>
+                <option value="BANK_TECHNICAL_ERROR">BANK_TECHNICAL_ERROR (Bank Switch Down)</option>
+                <option value="CARD_EXPIRED">CARD_EXPIRED (Hard Decline)</option>
+                <option value="BAD_REQUEST_PAYMENT_TIMED_OUT">BAD_REQUEST_PAYMENT_TIMED_OUT (3DS Timeout)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-3" id="btn-inject-submit">
+              <i data-lucide="zap"></i> Inject Webhook & Trigger Autonomous Agent
+            </button>
+          </form>
+
+          <div id="webhook-result-card" class="webhook-result-box mt-3" style="display:none;">
+            <!-- Output dynamically -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Case Detail Modal / Drawer -->
+  <div id="case-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-case-title">Case Deep-Dive Inspection</h3>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-case-content">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
