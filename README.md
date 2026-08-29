@@ -97,19 +97,3 @@ python test_verification.py
 
 ---
 
-## 🎬 5-Minute Demo Video Blueprint for Hackathon Presentation
-
-1. **Minute 0:00 – 1:00 (The Problem & Track 03 Overview)**
-   - Introduce RevMatrix AI and the massive problem of unrecovered revenue leaks in India across subscriptions, drop-offs, and B2B receivables.
-2. **Minute 1:00 – 2:00 (Executive Dashboard & 7 Pillars)**
-   - Show the Executive Overview, live Recovered Revenue counter (₹), bank switch health monitor, and 7-pillar telemetry breakdown.
-3. **Minute 2:00 – 3:00 (Batch Test Bench & Agent Reasoning)**
-   - Click *"Run Autonomous Recovery"*. Watch 50 cases get diagnosed and resolved in seconds.
-   - Click *"Inspect"* on an individual case to show the Diagnostic root cause, compliance guardrail evaluation, and Razorpay API execution payload.
-4. **Minute 3:00 – 4:00 (Hinglish Voice Agent & PTP Tracker Demo)**
-   - Switch to the *Hinglish Voice & Chat* tab.
-   - Click *"Speak Script"* to let the judges hear the polite Hinglish recovery call.
-   - Click *"Friday ko karunga"* or type a commitment to show the PTP state machine parse the date and pause suspension.
-5. **Minute 4:00 – 5:00 ("The Bar" Proof: Stopping Rules, Audit Trail & Live Webhook)**
-   - Show the Cryptographic SHA-256 Audit Trail tab verifying tamper-evident logs.
-   - Inject a live mock webhook from the *Webhook Injector* tab to demonstrate <2s real-time autonomous recovery.
