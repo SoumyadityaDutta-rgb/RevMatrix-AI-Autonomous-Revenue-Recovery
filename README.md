@@ -90,6 +90,11 @@ python run.py
 ```
 Open **[http://localhost:8000](http://localhost:8000)** in your browser.
 
+### 3. Run Automated Integration Tests (Optional)
+```bash
+python test_verification.py
+```
+
 ---
 
 ## 🎬 5-Minute Demo Video Blueprint for Hackathon Presentation
